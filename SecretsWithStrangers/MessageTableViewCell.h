@@ -1,5 +1,5 @@
 //
-//  MasterViewController.h
+//  MessageTableViewCell.h
 //  SecretsWithStrangers
 //
 //  Created by Brandon Trebitowski on 8/11/12.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MasterViewController : UIViewController
+@class Message;
 
+@interface MessageTableViewCell : UITableViewCell
+@property(nonatomic, strong) Message *message;
 @end

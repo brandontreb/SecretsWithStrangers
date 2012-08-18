@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C70C94E015DC8E6800DCFB06 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C70C94DF15DC8E6800DCFB06 /* ChatViewController.m */; };
+		C70C94E415DC90E600DCFB06 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C70C94E315DC90E600DCFB06 /* GCDAsyncSocket.m */; };
+		C70C94E615DC90F100DCFB06 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70C94E515DC90F100DCFB06 /* CFNetwork.framework */; };
+		C70C94E815DC910400DCFB06 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70C94E715DC910400DCFB06 /* Security.framework */; };
+		C70C94EE15DC912600DCFB06 /* MessageWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C70C94EB15DC912600DCFB06 /* MessageWriter.m */; };
+		C70C94EF15DC912600DCFB06 /* MessageReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C70C94ED15DC912600DCFB06 /* MessageReader.m */; };
+		C70C94F215DC913C00DCFB06 /* Network.m in Sources */ = {isa = PBXBuildFile; fileRef = C70C94F115DC913C00DCFB06 /* Network.m */; };
+		C70C94F515DC950C00DCFB06 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = C70C94F415DC950C00DCFB06 /* Client.m */; };
+		C7697C5815DD923A00C5330C /* connect-button.png in Resources */ = {isa = PBXBuildFile; fileRef = C7697C5615DD923A00C5330C /* connect-button.png */; };
+		C7697C5915DD923A00C5330C /* connect-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7697C5715DD923A00C5330C /* connect-button@2x.png */; };
+		C7697C5C15DD9F0300C5330C /* secrets-button.png in Resources */ = {isa = PBXBuildFile; fileRef = C7697C5A15DD9F0300C5330C /* secrets-button.png */; };
+		C7697C5D15DD9F0300C5330C /* secrets-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7697C5B15DD9F0300C5330C /* secrets-button@2x.png */; };
 		C7FB46E815D6CEC70079B31E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FB46E715D6CEC60079B31E /* UIKit.framework */; };
 		C7FB46EA15D6CEC70079B31E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FB46E915D6CEC70079B31E /* Foundation.framework */; };
 		C7FB46EC15D6CEC70079B31E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FB46EB15D6CEC70079B31E /* CoreGraphics.framework */; };
@@ -15,10 +27,43 @@
 		C7FB46F815D6CEC70079B31E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FB46F715D6CEC70079B31E /* AppDelegate.m */; };
 		C7FB46FB15D6CEC70079B31E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7FB46F915D6CEC70079B31E /* MainStoryboard.storyboard */; };
 		C7FB46FE15D6CEC70079B31E /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FB46FD15D6CEC70079B31E /* MasterViewController.m */; };
-		C7FB470115D6CEC70079B31E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FB470015D6CEC70079B31E /* DetailViewController.m */; };
+		C7FB470915D6CFF70079B31E /* Toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB470815D6CFF70079B31E /* Toolbar@2x.png */; };
+		C7FB470B15D6DC0C0079B31E /* Front-Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB470A15D6DC0C0079B31E /* Front-Background@2x.png */; };
+		C7FB470D15D6DEB10079B31E /* Front-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB470C15D6DEB10079B31E /* Front-Background.png */; };
+		C7FB471A15D6F0DD0079B31E /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FB471915D6F0DD0079B31E /* Message.m */; };
+		C7FB472115D706160079B31E /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FB472015D706160079B31E /* MessageTableViewCell.m */; };
+		C7FB472515D70E670079B31E /* Send-Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB472215D70E670079B31E /* Send-Button@2x.png */; };
+		C7FB472615D70E670079B31E /* Text-Field-Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB472315D70E670079B31E /* Text-Field-Background@2x.png */; };
+		C7FB472715D70E670079B31E /* Toolbar-Bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB472415D70E670079B31E /* Toolbar-Bottom@2x.png */; };
+		C7FB472915D710460079B31E /* Toolbar-Bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB472815D710460079B31E /* Toolbar-Bottom.png */; };
+		C7FB472C15D710880079B31E /* Send-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB472A15D710880079B31E /* Send-Button.png */; };
+		C7FB472D15D710880079B31E /* Text-Field-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB472B15D710880079B31E /* Text-Field-Background.png */; };
+		C7FB472F15D715A60079B31E /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB472E15D715A60079B31E /* blue.png */; };
+		C7FB473115D717FB0079B31E /* blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB473015D717FB0079B31E /* blue@2x.png */; };
+		C7FB473415D72CB60079B31E /* grey.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB473215D72CB60079B31E /* grey.png */; };
+		C7FB473515D72CB60079B31E /* grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB473315D72CB60079B31E /* grey@2x.png */; };
+		C7FB473715D72DCA0079B31E /* Toolbar-Bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FB473615D72DCA0079B31E /* Toolbar-Bottom@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C70C94DE15DC8E6800DCFB06 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		C70C94DF15DC8E6800DCFB06 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		C70C94E215DC90E600DCFB06 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		C70C94E315DC90E600DCFB06 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		C70C94E515DC90F100DCFB06 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C70C94E715DC910400DCFB06 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C70C94EA15DC912600DCFB06 /* MessageWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageWriter.h; sourceTree = "<group>"; };
+		C70C94EB15DC912600DCFB06 /* MessageWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageWriter.m; sourceTree = "<group>"; };
+		C70C94EC15DC912600DCFB06 /* MessageReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageReader.h; sourceTree = "<group>"; };
+		C70C94ED15DC912600DCFB06 /* MessageReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageReader.m; sourceTree = "<group>"; };
+		C70C94F015DC913C00DCFB06 /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
+		C70C94F115DC913C00DCFB06 /* Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Network.m; sourceTree = "<group>"; };
+		C70C94F315DC950C00DCFB06 /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
+		C70C94F415DC950C00DCFB06 /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
+		C7697C5615DD923A00C5330C /* connect-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "connect-button.png"; path = "Images/connect-button.png"; sourceTree = "<group>"; };
+		C7697C5715DD923A00C5330C /* connect-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "connect-button@2x.png"; path = "Images/connect-button@2x.png"; sourceTree = "<group>"; };
+		C7697C5A15DD9F0300C5330C /* secrets-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "secrets-button.png"; path = "Images/secrets-button.png"; sourceTree = "<group>"; };
+		C7697C5B15DD9F0300C5330C /* secrets-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "secrets-button@2x.png"; path = "Images/secrets-button@2x.png"; sourceTree = "<group>"; };
 		C7FB46E315D6CEC60079B31E /* SecretsWithStrangers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecretsWithStrangers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7FB46E715D6CEC60079B31E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C7FB46E915D6CEC70079B31E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -32,8 +77,24 @@
 		C7FB46FA15D6CEC70079B31E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		C7FB46FC15D6CEC70079B31E /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		C7FB46FD15D6CEC70079B31E /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		C7FB46FF15D6CEC70079B31E /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		C7FB470015D6CEC70079B31E /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		C7FB470815D6CFF70079B31E /* Toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Toolbar@2x.png"; path = "Images/Toolbar@2x.png"; sourceTree = "<group>"; };
+		C7FB470A15D6DC0C0079B31E /* Front-Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Front-Background@2x.png"; path = "Images/Front-Background@2x.png"; sourceTree = "<group>"; };
+		C7FB470C15D6DEB10079B31E /* Front-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Front-Background.png"; path = "Images/Front-Background.png"; sourceTree = "<group>"; };
+		C7FB471815D6F0DD0079B31E /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		C7FB471915D6F0DD0079B31E /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		C7FB471F15D706160079B31E /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		C7FB472015D706160079B31E /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		C7FB472215D70E670079B31E /* Send-Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Send-Button@2x.png"; path = "Images/Send-Button@2x.png"; sourceTree = "<group>"; };
+		C7FB472315D70E670079B31E /* Text-Field-Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Text-Field-Background@2x.png"; path = "Images/Text-Field-Background@2x.png"; sourceTree = "<group>"; };
+		C7FB472415D70E670079B31E /* Toolbar-Bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Toolbar-Bottom@2x.png"; path = "Images/Toolbar-Bottom@2x.png"; sourceTree = "<group>"; };
+		C7FB472815D710460079B31E /* Toolbar-Bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Toolbar-Bottom.png"; path = "Images/Toolbar-Bottom.png"; sourceTree = "<group>"; };
+		C7FB472A15D710880079B31E /* Send-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Send-Button.png"; path = "Images/Send-Button.png"; sourceTree = "<group>"; };
+		C7FB472B15D710880079B31E /* Text-Field-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Text-Field-Background.png"; path = "Images/Text-Field-Background.png"; sourceTree = "<group>"; };
+		C7FB472E15D715A60079B31E /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue.png; path = Images/blue.png; sourceTree = "<group>"; };
+		C7FB473015D717FB0079B31E /* blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue@2x.png"; path = "Images/blue@2x.png"; sourceTree = "<group>"; };
+		C7FB473215D72CB60079B31E /* grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grey.png; path = Images/grey.png; sourceTree = "<group>"; };
+		C7FB473315D72CB60079B31E /* grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "grey@2x.png"; path = "Images/grey@2x.png"; sourceTree = "<group>"; };
+		C7FB473615D72DCA0079B31E /* Toolbar-Bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Toolbar-Bottom@2x.png"; path = "Images/Toolbar-Bottom@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +102,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C70C94E815DC910400DCFB06 /* Security.framework in Frameworks */,
+				C70C94E615DC90F100DCFB06 /* CFNetwork.framework in Frameworks */,
 				C7FB46E815D6CEC70079B31E /* UIKit.framework in Frameworks */,
 				C7FB46EA15D6CEC70079B31E /* Foundation.framework in Frameworks */,
 				C7FB46EC15D6CEC70079B31E /* CoreGraphics.framework in Frameworks */,
@@ -50,6 +113,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C70C94E115DC90D300DCFB06 /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				C70C94E215DC90E600DCFB06 /* GCDAsyncSocket.h */,
+				C70C94E315DC90E600DCFB06 /* GCDAsyncSocket.m */,
+			);
+			name = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+		C70C94E915DC911900DCFB06 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C70C94EA15DC912600DCFB06 /* MessageWriter.h */,
+				C70C94EB15DC912600DCFB06 /* MessageWriter.m */,
+				C70C94EC15DC912600DCFB06 /* MessageReader.h */,
+				C70C94ED15DC912600DCFB06 /* MessageReader.m */,
+				C70C94F315DC950C00DCFB06 /* Client.h */,
+				C70C94F415DC950C00DCFB06 /* Client.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		C74016BF15D9BB1500D1B364 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				C70C94E915DC911900DCFB06 /* Network */,
+				C70C94E115DC90D300DCFB06 /* CocoaAsyncSocket */,
+			);
+			name = Libs;
+			sourceTree = "<group>";
+		};
 		C7FB46D815D6CEC60079B31E = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +164,8 @@
 		C7FB46E615D6CEC60079B31E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C70C94E715DC910400DCFB06 /* Security.framework */,
+				C70C94E515DC90F100DCFB06 /* CFNetwork.framework */,
 				C7FB46E715D6CEC60079B31E /* UIKit.framework */,
 				C7FB46E915D6CEC70079B31E /* Foundation.framework */,
 				C7FB46EB15D6CEC70079B31E /* CoreGraphics.framework */,
@@ -80,14 +176,21 @@
 		C7FB46ED15D6CEC70079B31E /* SecretsWithStrangers */ = {
 			isa = PBXGroup;
 			children = (
+				C74016BF15D9BB1500D1B364 /* Libs */,
 				C7FB46F615D6CEC70079B31E /* AppDelegate.h */,
 				C7FB46F715D6CEC70079B31E /* AppDelegate.m */,
+				C70C94DE15DC8E6800DCFB06 /* ChatViewController.h */,
+				C70C94DF15DC8E6800DCFB06 /* ChatViewController.m */,
 				C7FB46F915D6CEC70079B31E /* MainStoryboard.storyboard */,
 				C7FB46FC15D6CEC70079B31E /* MasterViewController.h */,
 				C7FB46FD15D6CEC70079B31E /* MasterViewController.m */,
-				C7FB46FF15D6CEC70079B31E /* DetailViewController.h */,
-				C7FB470015D6CEC70079B31E /* DetailViewController.m */,
 				C7FB46EE15D6CEC70079B31E /* Supporting Files */,
+				C7FB471815D6F0DD0079B31E /* Message.h */,
+				C7FB471915D6F0DD0079B31E /* Message.m */,
+				C7FB471F15D706160079B31E /* MessageTableViewCell.h */,
+				C7FB472015D706160079B31E /* MessageTableViewCell.m */,
+				C70C94F015DC913C00DCFB06 /* Network.h */,
+				C70C94F115DC913C00DCFB06 /* Network.m */,
 			);
 			path = SecretsWithStrangers;
 			sourceTree = "<group>";
@@ -95,12 +198,38 @@
 		C7FB46EE15D6CEC70079B31E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C7FB470715D6CF800079B31E /* Images */,
 				C7FB46EF15D6CEC70079B31E /* SecretsWithStrangers-Info.plist */,
 				C7FB46F015D6CEC70079B31E /* InfoPlist.strings */,
 				C7FB46F315D6CEC70079B31E /* main.m */,
 				C7FB46F515D6CEC70079B31E /* SecretsWithStrangers-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C7FB470715D6CF800079B31E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C7697C5A15DD9F0300C5330C /* secrets-button.png */,
+				C7697C5B15DD9F0300C5330C /* secrets-button@2x.png */,
+				C7697C5615DD923A00C5330C /* connect-button.png */,
+				C7697C5715DD923A00C5330C /* connect-button@2x.png */,
+				C7FB473215D72CB60079B31E /* grey.png */,
+				C7FB473315D72CB60079B31E /* grey@2x.png */,
+				C7FB472E15D715A60079B31E /* blue.png */,
+				C7FB473015D717FB0079B31E /* blue@2x.png */,
+				C7FB472A15D710880079B31E /* Send-Button.png */,
+				C7FB472B15D710880079B31E /* Text-Field-Background.png */,
+				C7FB472215D70E670079B31E /* Send-Button@2x.png */,
+				C7FB472315D70E670079B31E /* Text-Field-Background@2x.png */,
+				C7FB472415D70E670079B31E /* Toolbar-Bottom@2x.png */,
+				C7FB470C15D6DEB10079B31E /* Front-Background.png */,
+				C7FB470A15D6DC0C0079B31E /* Front-Background@2x.png */,
+				C7FB472815D710460079B31E /* Toolbar-Bottom.png */,
+				C7FB473615D72DCA0079B31E /* Toolbar-Bottom@2x.png */,
+				C7FB470815D6CFF70079B31E /* Toolbar@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +285,24 @@
 			files = (
 				C7FB46F215D6CEC70079B31E /* InfoPlist.strings in Resources */,
 				C7FB46FB15D6CEC70079B31E /* MainStoryboard.storyboard in Resources */,
+				C7FB470915D6CFF70079B31E /* Toolbar@2x.png in Resources */,
+				C7FB470B15D6DC0C0079B31E /* Front-Background@2x.png in Resources */,
+				C7FB470D15D6DEB10079B31E /* Front-Background.png in Resources */,
+				C7FB472515D70E670079B31E /* Send-Button@2x.png in Resources */,
+				C7FB472615D70E670079B31E /* Text-Field-Background@2x.png in Resources */,
+				C7FB472715D70E670079B31E /* Toolbar-Bottom@2x.png in Resources */,
+				C7FB472915D710460079B31E /* Toolbar-Bottom.png in Resources */,
+				C7FB472C15D710880079B31E /* Send-Button.png in Resources */,
+				C7FB472D15D710880079B31E /* Text-Field-Background.png in Resources */,
+				C7FB472F15D715A60079B31E /* blue.png in Resources */,
+				C7FB473115D717FB0079B31E /* blue@2x.png in Resources */,
+				C7FB473415D72CB60079B31E /* grey.png in Resources */,
+				C7FB473515D72CB60079B31E /* grey@2x.png in Resources */,
+				C7FB473715D72DCA0079B31E /* Toolbar-Bottom@2x.png in Resources */,
+				C7697C5815DD923A00C5330C /* connect-button.png in Resources */,
+				C7697C5915DD923A00C5330C /* connect-button@2x.png in Resources */,
+				C7697C5C15DD9F0300C5330C /* secrets-button.png in Resources */,
+				C7697C5D15DD9F0300C5330C /* secrets-button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +316,14 @@
 				C7FB46F415D6CEC70079B31E /* main.m in Sources */,
 				C7FB46F815D6CEC70079B31E /* AppDelegate.m in Sources */,
 				C7FB46FE15D6CEC70079B31E /* MasterViewController.m in Sources */,
-				C7FB470115D6CEC70079B31E /* DetailViewController.m in Sources */,
+				C7FB471A15D6F0DD0079B31E /* Message.m in Sources */,
+				C7FB472115D706160079B31E /* MessageTableViewCell.m in Sources */,
+				C70C94E015DC8E6800DCFB06 /* ChatViewController.m in Sources */,
+				C70C94E415DC90E600DCFB06 /* GCDAsyncSocket.m in Sources */,
+				C70C94EE15DC912600DCFB06 /* MessageWriter.m in Sources */,
+				C70C94EF15DC912600DCFB06 /* MessageReader.m in Sources */,
+				C70C94F215DC913C00DCFB06 /* Network.m in Sources */,
+				C70C94F515DC950C00DCFB06 /* Client.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,10 +399,13 @@
 		C7FB470515D6CEC70079B31E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SecretsWithStrangers/SecretsWithStrangers-Prefix.pch";
 				INFOPLIST_FILE = "SecretsWithStrangers/SecretsWithStrangers-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -256,10 +413,13 @@
 		C7FB470615D6CEC70079B31E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SecretsWithStrangers/SecretsWithStrangers-Prefix.pch";
 				INFOPLIST_FILE = "SecretsWithStrangers/SecretsWithStrangers-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -283,6 +443,7 @@
 				C7FB470615D6CEC70079B31E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
