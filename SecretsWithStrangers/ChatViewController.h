@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Network.h"
 
-@class Message;
+@class ChatMessage;
 
 @interface ChatViewController : UIViewController<NetworkDelegate>
 @property(nonatomic, strong) Network *network;
-@property(nonatomic, strong) Message *secret;
+@property(nonatomic, strong) ChatMessage *secret;
 @end

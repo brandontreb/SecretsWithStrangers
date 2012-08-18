@@ -7,12 +7,34 @@
 //
 
 #import "AppDelegate.h"
+#import "GANTracker.h"
+#import "appirater/Appirater.h"
+
+// Dispatch period in seconds
+static const NSInteger kGANDispatchPeriodSec = 10;
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     srand(time(0));
+    
+    // **************************************************************************
+    // PLEASE REPLACE WITH YOUR ACCOUNT DETAILS.
+    // **************************************************************************
+    [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-20364620-5"
+                                           dispatchPeriod:kGANDispatchPeriodSec
+                                                 delegate:nil];
+    
+    NSError *error = nil;
+    
+    if (![[GANTracker sharedTracker] trackPageview:@"/app_entry_point"
+                                         withError:&error]) {
+        // Handle error here
+    }
+    
+    [Appirater appLaunched];
+    
     // Override point for customization after application launch.
     return YES;
 }
@@ -36,7 +58,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

@@ -52,7 +52,6 @@ class ChatServer(MessageHandler):
 				p.protocol.sendMessage(messageChatStart)
 
 	def playerDisconnected(self,player):
-
 		if player == None:
 			return
 

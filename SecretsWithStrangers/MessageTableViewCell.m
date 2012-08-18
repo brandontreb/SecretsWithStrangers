@@ -7,7 +7,7 @@
 //
 
 #import "MessageTableViewCell.h"
-#import "Message.h"
+#import "ChatMessage.h"
 
 @interface MessageTableViewCell()
 @property(nonatomic, weak) IBOutlet UILabel *nameLabel;
@@ -48,15 +48,8 @@
     }
     
     NSString *text = self.message.text;
-    NSMutableString *spaces = [NSMutableString string];
-    int spaceCount = [self.nameLabel.text isEqualToString:@"me"] ? 6 : 15;
-    for(int i = 0; i < spaceCount; i++)
-    {
-        [spaces appendString:@" "];
-    }
     
     // Name
-    text = [NSString stringWithFormat:@"%@%@",spaces,text];
     CGSize nameSize = [self.nameLabel.text sizeWithFont:[UIFont boldSystemFontOfSize:14.0]];
     CGRect nameFrame = self.nameLabel.frame;
     nameFrame.size = nameSize;
@@ -64,16 +57,12 @@
     
     // Message
     CGRect messageFrame = self.messageLabel.frame;
-    messageFrame.origin.x = nameFrame.origin.x;
+    messageFrame.origin.x = 20;
     CGSize messageSize = [self.message.text sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(240, 10000) lineBreakMode:UILineBreakModeWordWrap];
 
     messageFrame.size = messageSize;
-    float minWidth = 320 - 40 - nameFrame.size.width;
+    messageFrame.size.width = 280;
     float minHeight = ([@"word" sizeWithFont:[UIFont systemFontOfSize:14]]).height;
-    if(messageFrame.size.width < minWidth)
-    {
-        messageFrame.size.width = minWidth;
-    }
     
     if (messageFrame.size.height < minHeight) {
         messageFrame.size.height = minHeight;

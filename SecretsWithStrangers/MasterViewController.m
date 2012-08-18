@@ -9,18 +9,20 @@
 #import "MasterViewController.h"
 #import "ChatViewController.h"
 #import "Network.h"
-#import "Message.h"
+#import "ChatMessage.h"
+#import <MessageUI/MessageUI.h>
 
 static NSString *kServerAddress = @"192.168.1.149";
 static NSInteger kServerPort = 1956;
 
-@interface MasterViewController () <NetworkDelegate>
+@interface MasterViewController () <NetworkDelegate,MFMailComposeViewControllerDelegate>
 @property(nonatomic,weak) IBOutlet UIImageView *frontBackgroundImageView;
 @property(nonatomic,weak) IBOutlet UITextView *secretTextView;
 @property(nonatomic,weak) IBOutlet UILabel *statusLabel;
 @property(nonatomic,weak) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property(nonatomic, strong) Network *network;
 @property(nonatomic, strong) UIBarButtonItem *connectButton;
+@property(nonatomic, strong) UIBarButtonItem *feedbackButton;
 @property(nonatomic, strong) NSTimer *timeoutTimer;
 @end
 
@@ -34,13 +36,20 @@ static NSInteger kServerPort = 1956;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    /*self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-     */
+	
+    // Left feedback button
+    UIImage *fimage = [UIImage imageNamed:@"feedback-button.png"];
+    UIButton* fbutton = [UIButton buttonWithType:UIButtonTypeCustom];
+    fbutton.frame = CGRectMake(0, 0, 75, 30);
+    [fbutton setBackgroundImage:fimage forState:UIControlStateNormal];
     
+    self.feedbackButton = [[UIBarButtonItem alloc] initWithCustomView:fbutton];
+    [self.feedbackButton setTarget:self];
+    [self.feedbackButton setAction:@selector(feedback:)];
+    [fbutton addTarget:self action:@selector(feedback:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = self.feedbackButton;
+    
+    // Right connect button
     UIImage *image = [UIImage imageNamed:@"connect-button.png"];
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0, 0, 75, 30);
@@ -81,6 +90,8 @@ static NSInteger kServerPort = 1956;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.statusLabel.hidden = NO;
+    self.statusLabel.text = @"Disconnected";
     self.connectButton.enabled = YES;
     self.network.delegate = self;
     [self.network disconnect];
@@ -101,6 +112,15 @@ static NSInteger kServerPort = 1956;
         NSDate *object = _objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }*/
+}
+
+- (void) feedback:(id) sender
+{
+    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+    mailViewController.mailComposeDelegate = self;
+    [mailViewController setSubject:@"Secrets With Strangers Feedback"];
+    [mailViewController setToRecipients:@[@"secretswithstrangers@gmail.com"]];
+    [self presentModalViewController:mailViewController animated:YES];
 }
 
 - (void)connect:(id) sender
@@ -151,7 +171,7 @@ static NSInteger kServerPort = 1956;
         [self.timeoutTimer invalidate];
         // Build secret message
         NSString *secret = self.secretTextView.text;
-        Message *message = [[Message alloc] init];
+        ChatMessage *message = [[ChatMessage alloc] init];
         message.isSecret = YES;
         message.text = secret;
         NSLocale *locale = [NSLocale currentLocale];
@@ -200,9 +220,14 @@ static NSInteger kServerPort = 1956;
     }
 }
 
-- (void) network:(Network *)network messageRecieved:(Message *)message
+- (void) network:(Network *)network messageRecieved:(ChatMessage *)message
 {
     
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

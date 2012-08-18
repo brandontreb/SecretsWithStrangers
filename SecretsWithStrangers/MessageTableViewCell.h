@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class Message;
+@class ChatMessage;
 
 @interface MessageTableViewCell : UITableViewCell
-@property(nonatomic, strong) Message *message;
+@property(nonatomic, strong) ChatMessage *message;
 @end

@@ -17,16 +17,17 @@ typedef enum NetworkStatus
     kNetworkStatusInRoom,
     kNetworkStatusBeginChat,
     kNetworkStatusRoomFull,
-    kNetworkStatusStrangerNotFound
+    kNetworkStatusStrangerNotFound,
+    kNetworkStatusStrangerDisconnected
 } NetworkStatus;
 
 @class Network;
-@class Message;
+@class ChatMessage;
 
 @protocol NetworkDelegate <NSObject>
 - (void) network:(Network *)network socketConnectedWithStatus:(NetworkStatus) networkStatus;
 - (void) network:(Network *)network socketDisconnectedWithStatus:(NetworkStatus) networkStatus;
-- (void) network:(Network *)network messageRecieved:(Message *)message;
+- (void) network:(Network *)network messageRecieved:(ChatMessage *)message;
 @end
 
 @interface Network : NSObject
@@ -35,5 +36,5 @@ typedef enum NetworkStatus
 - (id) initWithAddress:(NSString *) address port:(NSInteger) port;
 - (void) connect;
 - (void) disconnect;
-- (void) sendMessage:(Message *) message;
+- (void) sendMessage:(ChatMessage *) message;
 @end

@@ -7,16 +7,23 @@
 //
 
 #import "ChatViewController.h"
-#import "Message.h"
+#import "ChatMessage.h"
 #import "MessageTableViewCell.h"
+#import "GADBannerView.h"
+#import "GADAdMobExtras.h"
+#import "GANTracker.h"
+#import "appirater/Appirater.h"
 
-@interface ChatViewController () <UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>
+@interface ChatViewController () <UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate,GADBannerViewDelegate>
 @property(nonatomic, strong) NSMutableArray *messages;
 @property(nonatomic, weak) IBOutlet UIImageView *toolbarView;
 @property(nonatomic, weak) IBOutlet UITextField *textField;
 @property(nonatomic, weak) IBOutlet UITableView *tableView;
 @property(nonatomic, strong) NSDateFormatter *dateFormatter;
 @property(nonatomic) BOOL showKeyboard;
+@property(nonatomic) BOOL canChat;
+@property(nonatomic, strong) GADBannerView *bannerView;
+@property(nonatomic) NSInteger bannerHeight;
 - (IBAction)sendButtonPressed:(id)sender;
 @end
 
@@ -61,11 +68,38 @@
     NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"hh:mma" options:0 locale:locale];
     [self.dateFormatter setDateFormat:dateFormat];
     [self.dateFormatter setLocale:locale];
+    
+    
+    // Admob    
+    self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    self.bannerView.adUnitID = @"a1502fd6d3dee57";
+    self.bannerView.rootViewController = self;
+    self.bannerView.delegate = self;
+    self.bannerHeight = 0;
+    [self.bannerView loadRequest:[GADRequest request]];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
+    [self.tableView addGestureRecognizer:tapGesture];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    self.canChat = YES;
     [self.messages addObject:self.secret];
+    
+    // Google Analytics
+    NSError *error = nil;
+    if (![[GANTracker sharedTracker] trackPageview:@"/chat"
+                                         withError:&error]) {
+        // Handle error here
+    }
+    
+    [Appirater userDidSignificantEvent:YES];
+}
+
+- (void) tapGesture:(UITapGestureRecognizer *)gesture
+{
+    [self.textField resignFirstResponder];
 }
 
 - (void) back:(id) sender
@@ -138,17 +172,17 @@
                              self.toolbarView.frame = toolbarFrame;
                              
                              CGRect tableFrame = self.tableView.frame;
-                             tableFrame.size.height = 480 - 44 - 44 - 20 - keyboardSize.height;
+                             tableFrame.size.height = 480 - self.bannerHeight - 44 - 44 - 20 - keyboardSize.height;
                              self.tableView.frame = tableFrame;
                              
                          } else {
                              // Set your view's frame values
                              CGRect toolbarFrame = self.toolbarView.frame;
-                             toolbarFrame.origin.y = 480 - 44 - 44 - 20;
+                             toolbarFrame.origin.y = 480  - 44 - 44 - 20;
                              self.toolbarView.frame = toolbarFrame;
                              
                              CGRect tableFrame = self.tableView.frame;
-                             tableFrame.size.height = 480 - 44 - 44 - 20;
+                             tableFrame.size.height = 480 - 44 - 44 - 20 - self.bannerHeight;
                              self.tableView.frame = tableFrame;
                          }
                      }
@@ -183,7 +217,7 @@
         cell = [[MessageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 	
-	Message *message = self.messages[indexPath.row];
+	ChatMessage *message = self.messages[indexPath.row];
     cell.message = message;
     
     return cell;
@@ -191,14 +225,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *body = [[self.messages objectAtIndex:indexPath.row] text];
-	CGSize size = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(240.0, 480.0) lineBreakMode:UILineBreakModeWordWrap];
+	CGSize size = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(280.0, 480.0) lineBreakMode:UILineBreakModeWordWrap];
     
     float minHeight = ([@"word" sizeWithFont:[UIFont systemFontOfSize:14]]).height;    
-	return ((size.height > minHeight) ? size.height : minHeight) + 24;
+	return ((size.height > minHeight) ? size.height : minHeight) + 44;
 }
 
 - (IBAction)sendButtonPressed:(id)sender
 {
+    
+    if(!self.canChat)
+    {
+        [self back:self];
+        return;
+    }
+    
     if([self.textField.text isEqualToString:@""])
     {
         NSLog(@"RETURN");
@@ -206,7 +247,7 @@
     }        
     
     // Create message
-    Message *message = [[Message alloc] init];
+    ChatMessage *message = [[ChatMessage alloc] init];
     message.text = self.textField.text;
     message.messageSenderType = kMessageSenderTypeMe;
     message.time = [self.dateFormatter stringFromDate:[NSDate date]];
@@ -303,14 +344,21 @@
     {
         
     }
-    else
+    else if(networkStatus == kNetworkStatusStrangerDisconnected)
     {
-        
+        self.canChat = NO;
+        ChatMessage *message = [[ChatMessage alloc] init];
+        message.messageSenderType = kMessageSenderTypeStranger;
+        message.text = @"[The stranger has disconnected]";
+        [self.messages addObject:message];
+        [self.tableView reloadData];
+        [self scrollToBottom];
     }    
 }
 
-- (void) network:(Network *)network messageRecieved:(Message *)message
+- (void) network:(Network *)network messageRecieved:(ChatMessage *)message
 {
+    NSLog(@"stranger secrets %@",message.text);
     message.time = [self.dateFormatter stringFromDate:[NSDate date]];
     [self.messages addObject:message];
     [self.tableView reloadData];
@@ -322,6 +370,29 @@
     if([self.messages count] < 1) return;
     NSIndexPath* ipath = [NSIndexPath indexPathForRow: [self.messages count]-1 inSection: 0];
     [self.tableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+}
+
+#pragma mark - adview delegate
+
+- (void)adViewDidReceiveAd:(GADBannerView *)bannerView
+{
+    self.bannerHeight = 50.0;
+    self.bannerView.frame = CGRectMake(0, 0, 320, 50);
+    [self.view addSubview:self.bannerView];
+    [UIView animateWithDuration:0.5 animations:^{
+        CGRect tableFrame = self.tableView.frame;
+        tableFrame.origin.y += self.bannerHeight;
+        tableFrame.size.height -= self.bannerHeight;
+        self.tableView.frame = tableFrame;
+        self.bannerView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        self.bannerView.layer.borderWidth = 1;
+    }];
+}
+
+- (void)adView:(GADBannerView *)bannerView
+didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    
 }
 
 @end

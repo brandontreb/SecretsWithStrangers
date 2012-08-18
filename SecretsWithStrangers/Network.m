@@ -9,8 +9,8 @@
 #import "Network.h"
 #import "GCDAsyncSocket.h"
 #import "MessageReader.h"
-#import "MessageWriter.h"
-#import "Message.h"
+#import "NetworkMessageWriter.h"
+#import "ChatMessage.h"
 
 @interface Network ()<GCDAsyncSocketDelegate>
 
@@ -71,7 +71,7 @@
 
 - (void)sendPlayerConnected {
     
-    MessageWriter * writer = [[MessageWriter alloc] init];
+    NetworkMessageWriter * writer = [[NetworkMessageWriter alloc] init];
     [writer writeByte:0];
     [writer writeInt:self.userID];
     NSString *room = self.room ? self.room : @"Lobby";
@@ -92,9 +92,9 @@
     [self.socket writeData:writer.data withTimeout:5 tag:1];
 }
 
-- (void) sendMessage:(Message *) message
+- (void) sendMessage:(ChatMessage *) message
 {
-    MessageWriter * writer = [[MessageWriter alloc] init];
+    NetworkMessageWriter * writer = [[NetworkMessageWriter alloc] init];
     [writer writeByte:2];
     [writer writeByte:message.isSecret];
     [writer writeString:message.text];
@@ -188,14 +188,21 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"recieved message(%d) %@",isSecret,message);
-            Message *m = [[Message alloc] init];
+            ChatMessage *m = [[ChatMessage alloc] init];
             m.isSecret = isSecret;
             m.messageSenderType = kMessageSenderTypeStranger;
             m.text = message;
             [self.delegate network:self messageRecieved:m];
         });
     }
-    else if(msgType == 6)
+    else if(msgType == 1) // Player diconnected
+    {
+        self.networkStatus = kNetworkStatusStrangerDisconnected;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self disconnect];
+        });
+    }
+    else if(msgType == 6) // Chat start
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"Start chat");
