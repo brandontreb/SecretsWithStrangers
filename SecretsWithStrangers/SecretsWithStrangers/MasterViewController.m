@@ -12,7 +12,7 @@
 #import "ChatMessage.h"
 #import <MessageUI/MessageUI.h>
 
-static NSString *kServerAddress = @"192.168.1.149";
+static NSString *kServerAddress = @"96.126.98.43";
 static NSInteger kServerPort = 1956;
 
 @interface MasterViewController () <NetworkDelegate,MFMailComposeViewControllerDelegate>

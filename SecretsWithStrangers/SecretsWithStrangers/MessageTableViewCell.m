@@ -58,7 +58,7 @@
     // Message
     CGRect messageFrame = self.messageLabel.frame;
     messageFrame.origin.x = 20;
-    CGSize messageSize = [self.message.text sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(240, 10000) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize messageSize = [self.message.text sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(280, 10000) lineBreakMode:UILineBreakModeWordWrap];
 
     messageFrame.size = messageSize;
     messageFrame.size.width = 280;
@@ -72,9 +72,9 @@
     self.messageLabel.frame = messageFrame;
     
     // Time
-    CGRect timeFrame = self.timeLabel.frame;
-    timeFrame.origin.y = messageFrame.origin.y + messageFrame.size.height;
-    self.timeLabel.frame = timeFrame;
+    //CGRect timeFrame = self.timeLabel.frame;
+    //timeFrame.origin.y = messageFrame.origin.y + messageFrame.size.height;
+    //self.timeLabel.frame = timeFrame;
     self.timeLabel.text = self.message.time;
     
     /*NSString *text = _message.text;

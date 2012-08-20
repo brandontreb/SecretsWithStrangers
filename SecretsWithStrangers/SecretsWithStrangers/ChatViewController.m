@@ -13,6 +13,7 @@
 #import "GADAdMobExtras.h"
 #import "GANTracker.h"
 #import "appirater/Appirater.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ChatViewController () <UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate,GADBannerViewDelegate>
 @property(nonatomic, strong) NSMutableArray *messages;
@@ -36,17 +37,15 @@
     _messages = [@[] mutableCopy];
 
     // Test messages
-    /*for(int x = 0; x < 18;x++)
-    {
-        Message *m = [[Message alloc] init];
-        m.text = [NSString stringWithFormat:@"My Secret: I farted in church and pointed to my wife. it was very funny and this should take up multiple lines." ];
-        m.messageSenderType = x % 2;
-        
-        NSDate *myDate = [NSDate date];
-        m.time = [formatter stringFromDate:myDate];
-        
-        [self.messages addObject:m];
-    }*/
+//    for(int x = 0; x < 18;x++)
+//    {
+//        ChatMessage *m = [[ChatMessage alloc] init];
+//        m.text = [NSString stringWithFormat:@"My Secret: I farted in church and pointed to my wife." ];
+//        m.messageSenderType = x % 2;
+//        m.time = @"monday";
+//        
+//        [self.messages addObject:m];
+//    }
     
     // Custom back button
     
@@ -217,7 +216,7 @@
         cell = [[MessageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 	
-	ChatMessage *message = self.messages[indexPath.row];
+	ChatMessage *message = [self.messages objectAtIndex:indexPath.row];
     cell.message = message;
     
     return cell;
@@ -228,7 +227,7 @@
 	CGSize size = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(280.0, 480.0) lineBreakMode:UILineBreakModeWordWrap];
     
     float minHeight = ([@"word" sizeWithFont:[UIFont systemFontOfSize:14]]).height;    
-	return ((size.height > minHeight) ? size.height : minHeight) + 44;
+	return ((size.height > minHeight) ? size.height : minHeight) + 24;
 }
 
 - (IBAction)sendButtonPressed:(id)sender
@@ -386,6 +385,7 @@
         self.tableView.frame = tableFrame;
         self.bannerView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         self.bannerView.layer.borderWidth = 1;
+        [self scrollToBottom];
     }];
 }
 

@@ -59,7 +59,7 @@
 }
 
 - (void) disconnect
-{    
+{
     self.room = @"Lobby";
     self.chatServerAddress = nil;
     self.chatServerPort = 0;
@@ -75,6 +75,7 @@
     [writer writeByte:0];
     [writer writeInt:self.userID];
     NSString *room = self.room ? self.room : @"Lobby";
+    NSLog(@"sending connected to %@",room);
     [writer writeString:room];
     [writer writeLength];
     
