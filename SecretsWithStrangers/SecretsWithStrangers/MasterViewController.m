@@ -132,24 +132,45 @@ static NSInteger kServerPort = 1956;
         return;
     }    
     
-    self.timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(timeout:) userInfo:nil repeats:NO];
+    self.timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
     
     self.connectButton.enabled = NO;
-    [self.secretTextView resignFirstResponder];
     [self.activityIndicator startAnimating];
-    self.statusLabel.text = @"Finding Stranger...";
+    self.statusLabel.text = @"Connecting to server...";
     self.statusLabel.hidden = NO;
     
     [self.network connect];
 }
 
+static int counter = 0;
+
 - (void) timeout:(NSTimer *) timer
 {
-    self.connectButton.enabled = YES;
+    /*self.connectButton.enabled = YES;
     self.network.networkStatus = kNetworkStatusStrangerNotFound;
     [self.network disconnect];
     [self.secretTextView becomeFirstResponder];
-    [self.activityIndicator stopAnimating];
+    [self.activityIndicator stopAnimating];*/
+    if (counter % 5 == 0) {
+        self.statusLabel.text = @"It may take a few minutes...";
+    }
+    else if(counter %5 == 1)
+    {
+        self.statusLabel.text = @"Grab a coffee while you wait...";
+    }
+    else if(counter % 5 == 2)
+    {
+        self.statusLabel.text = @"I hope you are having a nice day...";
+    }
+    else if(counter % 5 == 3)
+    {
+        self.statusLabel.text = @"Still searching...";
+    }
+    else if(counter % 5 == 4)
+    {
+        self.statusLabel.text = @"Finding Stranger...";
+    }
+    counter++;
 }
 
 #pragma mark - Network Delegate
@@ -159,12 +180,12 @@ static NSInteger kServerPort = 1956;
     if(networkStatus == kNetworkStatusInLobby)
     {
         NSLog(@"lobby");
-        self.statusLabel.text = @"Finding stranger...";
+        self.statusLabel.text = @"Connecting to server...";
     }
     else if(networkStatus == kNetworkStatusInRoom)
     {
         NSLog(@"in room");
-        self.statusLabel.text = @"Waiting for stranger...";
+        self.statusLabel.text = @"Finding a stranger...";
     }
     else if(networkStatus == kNetworkStatusBeginChat)
     {

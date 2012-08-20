@@ -44,17 +44,17 @@
 - (void) connect
 {
     self.networkStatus = kNetworkStatusDisconnected;
-    NSLog(@"connecting to %@ %d",self.lobbyAddress, self.lobbyPort);
+    //NSLog(@"connecting to %@ %d",self.lobbyAddress, self.lobbyPort);
     NSError *error = nil;
     
     if (![self.socket connectToHost:self.lobbyAddress onPort:self.lobbyPort error:&error])
     {
-        NSLog(@"Error connecting: %@",error);
+        //NSLog(@"Error connecting: %@",error);
         [self.delegate network:self socketDisconnectedWithStatus:kNetworkStatusConnectionError];
     }
     else
     {
-        NSLog(@"Fired up socket");
+        //NSLog(@"Fired up socket");
     }
 }
 
@@ -75,7 +75,7 @@
     [writer writeByte:0];
     [writer writeInt:self.userID];
     NSString *room = self.room ? self.room : @"Lobby";
-    NSLog(@"sending connected to %@",room);
+    //NSLog(@"sending connected to %@",room);
     [writer writeString:room];
     [writer writeLength];
     
@@ -173,14 +173,14 @@
 - (void)processMessage:(NSData *)data {
     MessageReader * reader = [[MessageReader alloc] initWithData:data];
     
-    NSUInteger len = [reader.data length];
+    /*NSUInteger len = [reader.data length];
     Byte *byteData = (Byte*)malloc(len);
     memcpy(byteData, [reader.data bytes], len);
     
     for(int i = 0; i < len; i++)
     {
         printf("%d\n",byteData[i]);
-    }
+    }*/
     
     unsigned char msgType = [reader readByte];
     if (msgType == 2) { // chat
@@ -188,7 +188,7 @@
         NSString *message = [reader readString];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"recieved message(%d) %@",isSecret,message);
+            //NSLog(@"recieved message(%d) %@",isSecret,message);
             ChatMessage *m = [[ChatMessage alloc] init];
             m.isSecret = isSecret;
             m.messageSenderType = kMessageSenderTypeStranger;
